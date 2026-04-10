@@ -21,6 +21,7 @@ interface TimelineEntry {
   end?: string;
   url?: string;
   github?: string;
+  image?: string;
 }
 
 const timeline = (yamlLoad(timelineRaw) as TimelineEntry[]).reverse(); // newest first
@@ -35,6 +36,24 @@ const byYear = timeline.reduce<Record<number, TimelineEntry[]>>((acc, entry) => 
 const years = Object.keys(byYear)
   .map(Number)
   .sort((a, b) => b - a);
+
+// Flatten into a list with year separators for alternating layout
+interface TimelineItem {
+  kind: 'year' | 'entry';
+  year: number;
+  entry?: TimelineEntry;
+  index: number; // running entry index for left/right alternation
+}
+
+const items: TimelineItem[] = [];
+let entryIndex = 0;
+for (const year of years) {
+  items.push({ kind: 'year', year, index: 0 });
+  for (const entry of byYear[year]) {
+    items.push({ kind: 'entry', year, entry, index: entryIndex });
+    entryIndex++;
+  }
+}
 
 const typeLabel: Record<string, string> = {
   career: 'career',
@@ -53,44 +72,44 @@ const typeLabel: Record<string, string> = {
       </p>
     </div>
 
-    <!-- Legend -->
-    <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:3rem;font-family:var(--font-mono);font-size:.78rem;color:var(--text-muted);">
-      <span><span style="display:inline-block;width:10px;height:10px;background:#e8a838;border-radius:2px;transform:rotate(45deg);margin-right:.6rem;vertical-align:middle;"></span>career</span>
-      <span style="display:flex;align-items:center;gap:.5rem;"><span style="display:inline-block;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:11px solid #3b82f6;"></span>education</span>
-      <span><span style="display:inline-block;width:11px;height:11px;background:#f59e0b;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);margin-right:.4rem;vertical-align:middle;"></span>event</span>
-      <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#8b5cf6;margin-right:.4rem;vertical-align:middle;"></span>project</span>
-    </div>
 
     <div class="timeline">
-      {years.map(year => (
-        <div class="timeline-year-group">
-          <div class="timeline-year-label">{year}</div>
-          {byYear[year].map(entry => (
-            <div class={`timeline-entry timeline-entry--${entry.type}`}>
-              <div class="timeline-entry__dot"></div>
-              <div class="timeline-entry__year">
-                {typeLabel[entry.type]}
-                {entry.start && entry.end && ` · ${entry.start} – ${entry.end}`}
-              </div>
-              <div class="timeline-entry__title">{entry.title}</div>
-              {entry.company && (
-                <div class="timeline-entry__company">{entry.company}</div>
+      {items.map(item => item.kind === 'year' ? (
+        <div class="timeline-year-bubble">{item.year}</div>
+      ) : (
+        <div class={`timeline-entry timeline-entry--${item.entry!.type} ${item.index % 2 === 0 ? 'timeline-entry--right' : 'timeline-entry--left'}`}>
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-card__arrow"></div>
+            <div class="timeline-entry__title">{item.entry!.title}</div>
+            <div class="timeline-entry__subtitle">
+              <span class="timeline-entry__meta">
+                {typeLabel[item.entry!.type]}
+                {item.entry!.start && item.entry!.end && ` · ${item.entry!.start} – ${item.entry!.end}`}
+              </span>
+              {item.entry!.company && (
+                <span class="timeline-entry__company">· {item.entry!.company}</span>
               )}
-              <div class="timeline-entry__desc">{entry.description}</div>
-              <div style="display:flex;gap:.75rem;margin-top:.4rem;flex-wrap:wrap;">
-                {entry.url && (
-                  <a class="timeline-entry__link" href={entry.url} target="_blank" rel="noopener">
-                    ↗ {new URL(entry.url).hostname}
+            </div>
+            <div class="timeline-entry__desc">{item.entry!.description}</div>
+            {(item.entry!.url || item.entry!.github) && (
+              <div class="timeline-entry__links">
+                {item.entry!.url && (
+                  <a class="timeline-entry__link" href={item.entry!.url} target="_blank" rel="noopener">
+                    ↗ {new URL(item.entry!.url).hostname}
                   </a>
                 )}
-                {entry.github && (
-                  <a class="timeline-entry__link" href={entry.github} target="_blank" rel="noopener">
+                {item.entry!.github && (
+                  <a class="timeline-entry__link" href={item.entry!.github} target="_blank" rel="noopener">
                     ↗ github
                   </a>
                 )}
               </div>
-            </div>
-          ))}
+            )}
+            {item.entry!.image && (
+              <img class="timeline-entry__image" src={item.entry!.image} alt={item.entry!.title} loading="lazy" />
+            )}
+          </div>
         </div>
       ))}
     </div>

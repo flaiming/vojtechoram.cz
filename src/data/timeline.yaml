@@ -16,12 +16,21 @@
   type: project
   title: "DragonFlame — first website"
   description: "Built my first website after discovering a dragon discussion on Pevnost.cz fantasy magazine. The beginning of both my love of dragons and my programming journey."
+  image: /img/projects/dragonflame.png
 
 - year: 2005
   type: project
   title: "Draci.info — founded"
   description: "Founded Draci.info, a Czech dragon fan community. Built the original platform as a custom PHP/MySQL application from scratch. The community is still active today."
   url: https://draci.info
+  image: /img/projects/draci-info-original.jpg
+
+- year: 2006
+  type: project
+  title: "Draci.info v1"
+  description: "Major update to Draci.info — added new sections for discussions (forum) and for uploading art (images and texts)."
+  url: https://draci.info
+  image: /img/projects/draci-info-v1.png
 
 - year: 2011
   type: education
@@ -97,6 +106,7 @@
   title: "ChciDraky.cz — launched"
   description: "Launched ChciDraky.cz, a dragon merchandise aggregator. Built on affiliate marketing — aggregates dragon-themed items from Czech e-shops. Domain registered September 2014."
   url: http://chcidraky.cz
+  image: /img/projects/chcidraky.png
 
 - year: 2017
   type: career
@@ -156,6 +166,7 @@
   description: "Open-source 3D printed construction set. Large parts that snap together without screws, printable without supports, with gear support for mechanical builds. Developed for his kids."
   github: https://github.com/flaiming/Connect-a-Beam
   url: https://www.printables.com/model/842886-connect-a-beam-construction-set
+  image: /img/projects/connect-a-beam.png
 
 - year: 2025
   type: event
