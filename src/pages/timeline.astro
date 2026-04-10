@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { load as yamlLoad } from 'js-yaml';
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import path from 'path';
+
+// Load timeline data
+const timelineRaw = readFileSync(
+  path.join(process.cwd(), 'src/data/timeline.yaml'),
+  'utf-8'
+);
+
+interface TimelineEntry {
+  year: number;
+  type: 'career' | 'education' | 'project' | 'event';
+  title: string;
+  description: string;
+  company?: string;
+  start?: string;
+  end?: string;
+  url?: string;
+  github?: string;
+}
+
+const timeline = (yamlLoad(timelineRaw) as TimelineEntry[]).reverse(); // newest first
+
+// Group by year
+const byYear = timeline.reduce<Record<number, TimelineEntry[]>>((acc, entry) => {
+  if (!acc[entry.year]) acc[entry.year] = [];
+  acc[entry.year].push(entry);
+  return acc;
+}, {});
+
+const years = Object.keys(byYear)
+  .map(Number)
+  .sort((a, b) => b - a);
+
+const typeLabel: Record<string, string> = {
+  career: 'career',
+  education: 'education',
+  project: 'project',
+  event: 'event',
+};
+---
+<BaseLayout title="Timeline" activeNav="timeline">
+  <div class="container--wide">
+    <div class="page-hero">
+      <p class="page-hero__eyebrow">history</p>
+      <h1 class="page-hero__title">Timeline</h1>
+      <p class="page-hero__subtitle">
+        Career, projects, and milestones — from 2004 to present.
+      </p>
+    </div>
+
+    <!-- Legend -->
+    <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:3rem;font-family:var(--font-mono);font-size:.78rem;color:var(--text-muted);">
+      <span><span style="display:inline-block;width:10px;height:10px;background:#e8a838;border-radius:2px;transform:rotate(45deg);margin-right:.6rem;vertical-align:middle;"></span>career</span>
+      <span style="display:flex;align-items:center;gap:.5rem;"><span style="display:inline-block;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:11px solid #3b82f6;"></span>education</span>
+      <span><span style="display:inline-block;width:11px;height:11px;background:#f59e0b;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);margin-right:.4rem;vertical-align:middle;"></span>event</span>
+      <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#8b5cf6;margin-right:.4rem;vertical-align:middle;"></span>project</span>
+    </div>
+
+    <div class="timeline">
+      {years.map(year => (
+        <div class="timeline-year-group">
+          <div class="timeline-year-label">{year}</div>
+          {byYear[year].map(entry => (
+            <div class={`timeline-entry timeline-entry--${entry.type}`}>
+              <div class="timeline-entry__dot"></div>
+              <div class="timeline-entry__year">
+                {typeLabel[entry.type]}
+                {entry.start && entry.end && ` · ${entry.start} – ${entry.end}`}
+              </div>
+              <div class="timeline-entry__title">{entry.title}</div>
+              {entry.company && (
+                <div class="timeline-entry__company">{entry.company}</div>
+              )}
+              <div class="timeline-entry__desc">{entry.description}</div>
+              <div style="display:flex;gap:.75rem;margin-top:.4rem;flex-wrap:wrap;">
+                {entry.url && (
+                  <a class="timeline-entry__link" href={entry.url} target="_blank" rel="noopener">
+                    ↗ {new URL(entry.url).hostname}
+                  </a>
+                )}
+                {entry.github && (
+                  <a class="timeline-entry__link" href={entry.github} target="_blank" rel="noopener">
+                    ↗ github
+                  </a>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

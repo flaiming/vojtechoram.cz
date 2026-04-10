@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const sorted = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+---
+<BaseLayout title="Blog" activeNav="blog">
+  <div class="container">
+    <div class="page-hero">
+      <p class="page-hero__eyebrow">writing</p>
+      <h1 class="page-hero__title">Blog</h1>
+      <p class="page-hero__subtitle">
+        {sorted.length} posts — mostly in Czech, covering programming, projects, and life.
+      </p>
+    </div>
+
+    <div class="post-list">
+      {sorted.map(post => (
+        <div class="post-item">
+          <span class="post-item__date">{formatDate(post.data.date)}</span>
+          <div>
+            <a class="post-item__title" href={`/blog/${post.data.slug ?? post.slug}`}>
+              {post.data.title}
+              {post.data.lang === 'cs' && <span class="post-item__lang">cs</span>}
+            </a>
+            {post.data.description && (
+              <p class="post-item__desc">{post.data.description}</p>
+            )}
+            {post.data.tags.length > 0 && (
+              <div class="tags" style="margin-top:.4rem;">
+                {post.data.tags.slice(0, 5).map(t => <span class="tag">{t}</span>)}
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

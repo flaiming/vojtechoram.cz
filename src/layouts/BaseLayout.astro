@@ -1,0 +1,103 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  activeNav?: 'about' | 'blog' | 'timeline';
+}
+
+const { title, description = 'Vojtěch Oram — programmer, maker, dragon enthusiast.', activeNav } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://vojtechoram.cz');
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>{title} — Vojtěch Oram</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <!-- Restore saved theme before first paint to avoid flash -->
+  <script is:inline>
+    (function () {
+      const saved = localStorage.getItem('theme');
+      if (saved) document.documentElement.setAttribute('data-theme', saved);
+    })();
+  </script>
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="site-nav__inner">
+      <a href="/" class="site-nav__brand">vojtech<span>oram</span>.cz</a>
+      <ul class="site-nav__links">
+        <li><a href="/" {...activeNav === 'about' ? {'data-active': ''} : {}}>about</a></li>
+        <li><a href="/blog" {...activeNav === 'blog' ? {'data-active': ''} : {}}>blog</a></li>
+        <li><a href="/timeline" {...activeNav === 'timeline' ? {'data-active': ''} : {}}>timeline</a></li>
+      </ul>
+      <span class="site-nav__spacer"></span>
+      <button
+        class="theme-toggle"
+        id="theme-toggle"
+        aria-label="Toggle theme"
+        title="Toggle light/dark theme"
+      >
+        <span id="theme-icon">☀</span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <span>© {new Date().getFullYear()} Vojtěch Oram</span>
+      <ul class="site-footer__links">
+        <li><a href="https://github.com/flaiming" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/vojtechoram" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> LinkedIn</a></li>
+        <li><a href="mailto:vojtech@oram.cz"><i class="fa-solid fa-envelope"></i> Email</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script is:inline>
+    (function () {
+      const toggle = document.getElementById('theme-toggle');
+      const icon   = document.getElementById('theme-icon');
+      const html   = document.documentElement;
+
+      function isDark() {
+        const saved = localStorage.getItem('theme');
+        if (saved) return saved === 'dark';
+        return window.matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+
+      function applyIcon() {
+        icon.textContent = isDark() ? '☀' : '☾';
+      }
+
+      applyIcon();
+
+      toggle.addEventListener('click', function () {
+        const dark = isDark();
+        const next = dark ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        applyIcon();
+      });
+
+      // Keep icon in sync if OS preference changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
+        if (!localStorage.getItem('theme')) applyIcon();
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "vojtechoram-new",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.2.0",
+    "@types/js-yaml": "^4.0.9",
+    "astro": "^6.0.8",
+    "js-yaml": "^4.1.1"
+  }
+}

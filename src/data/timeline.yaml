@@ -1,0 +1,176 @@
+- year: 2006
+  type: education
+  title: "Masaryk University Brno — Applied Informatics"
+  description: "Applied informatics at Masaryk University Brno."
+  start: "2006"
+  end: "2007"
+
+- year: 2007
+  type: education
+  title: "Brno University of Technology — Information Technology"
+  description: "Bc. in Information Technology at Vysoké učení technické v Brně (VUT Brno)."
+  start: "2007"
+  end: "2011"
+
+- year: 2004
+  type: project
+  title: "DragonFlame — first website"
+  description: "Built my first website after discovering a dragon discussion on Pevnost.cz fantasy magazine. The beginning of both my love of dragons and my programming journey."
+
+- year: 2005
+  type: project
+  title: "Draci.info — founded"
+  description: "Founded Draci.info, a Czech dragon fan community. Built the original platform as a custom PHP/MySQL application from scratch. The community is still active today."
+  url: https://draci.info
+
+- year: 2011
+  type: education
+  title: "University of Pardubice — Information Technology"
+  description: "Ing. (Master's level) in Information Technology. Diploma thesis: \"Captcha test\" — researched non-text CAPTCHA approaches and implemented RoCAPTCHA, a publicly available image-based CAPTCHA API."
+  start: "2011"
+  end: "2013"
+  url: https://dk.upce.cz/entities/publication/330bb6cc-6c53-4350-8e80-9f1a1aa3a592
+
+- year: 2011
+  type: career
+  title: "Web developer at Michal Kandr"
+  company: "Michal Kandr"
+  description: "First professional job. PHP/MySQL backend and frontend coding from PSD templates (XHTML, CSS)."
+  start: "Sep 2011"
+  end: "Jul 2012"
+
+- year: 2012
+  type: career
+  title: "Programmer at OLYMPIC s.r.o."
+  company: "OLYMPIC s.r.o."
+  description: "Developed FAPI.cz — an internet application for managing invoices — and other web applications."
+  start: "Oct 2012"
+  end: "Jun 2013"
+
+- year: 2012
+  type: project
+  title: "Bronies.cz — founded"
+  description: "Founded and launched Bronies.cz, a community website for Czech fans of My Little Pony: Friendship is Magic."
+  url: http://bronies.cz
+
+- year: 2013
+  type: project
+  title: "vojtechoram.cz — launched"
+  description: "Launched personal website and blog. Domain registered March 2012, site went live in 2013."
+  url: https://vojtechoram.cz
+
+- year: 2013
+  type: career
+  title: "Programmer at Seznam.cz"
+  company: "Seznam.cz"
+  description: "Maintained and developed Seznam.cz services in Python. Worked with Linux (Debian), Nginx, Flask, MySQL, Cassandra, Swift, MongoDB, Elasticsearch, Logstash, Kibana."
+  start: "Jul 2013"
+  end: "Sep 2015"
+
+- year: 2013
+  type: project
+  title: "RoCAPTCHA"
+  description: "Released RoCAPTCHA — a CAPTCHA using random images of cats vs dogs. Published as a Django form widget, PHP library, and MyBB forum plugin."
+  github: https://github.com/flaiming/django-rocaptcha
+
+- year: 2014
+  type: education
+  title: "Vocational School — Electrician certificate"
+  description: "Completed apprenticeship in Electrician at Higher Professional and Secondary Technical School."
+
+- year: 2014
+  type: project
+  title: "shelterparser"
+  description: "Built a parser for Czech animal shelters, aggregating animals available for adoption across Czech shelters."
+  github: https://github.com/flaiming/shelterparser
+
+- year: 2015
+  type: career
+  title: "Software Engineer at Red Hat"
+  company: "Red Hat"
+  description: "Worked on Product Pages — the backend portal for managing Red Hat product information. Added features, maintenance, and testing (unit tests, integration tests, Selenium)."
+  start: "Oct 2015"
+  end: "May 2017"
+
+- year: 2014
+  type: project
+  title: "ChciDraky.cz — launched"
+  description: "Launched ChciDraky.cz, a dragon merchandise aggregator. Built on affiliate marketing — aggregates dragon-themed items from Czech e-shops. Domain registered September 2014."
+  url: http://chcidraky.cz
+
+- year: 2017
+  type: career
+  title: "Senior Full Stack Engineer at Leadspicker.com"
+  company: "Leadspicker.com"
+  description: "Co-building Leadspicker — an AI-powered B2B sales intelligence platform. Handles lead enrichment, email finding, LinkedIn data extraction, and automated outreach automation."
+  start: "Jun 2017"
+  end: "Present"
+  url: https://leadspicker.com
+
+- year: 2018
+  type: project
+  title: "TechFurMeet — MicroPython talk"
+  description: "Presented MicroPython on ESP8266 microcontrollers at TechFurMeet."
+  github: https://github.com/flaiming/techfurmeet-micropython
+
+- year: 2016
+  type: project
+  title: "Dragon Calendar — e-shop"
+  description: "Collaboration with Dragarta: her idea and design, Vojtěch's implementation. An e-shop presenting and selling annual dragon art calendars featuring artwork from Draci.info community artists. The project is no longer active — Dragarta now runs her own calendar independently."
+  url: https://kalendar.draci.info
+
+- year: 2020
+  type: project
+  title: "Draci.info → Flarum migration"
+  description: "Migrated the original custom PHP Draci.info platform to Flarum, a modern open-source forum. The community continues at draci.info."
+  url: https://draci.info
+
+- year: 2021
+  type: project
+  title: "SdílejPřání.cz"
+  description: "No-registration wishlist sharing app. Create a wish list, share the link — friends can mark wishes as reserved to avoid duplicate gifts. Live at sdilejprani.cz."
+  url: https://sdilejprani.cz
+  github: https://github.com/flaiming/simple-wishlist
+
+- year: 2021
+  type: project
+  title: "bookfinder"
+  description: "App to find a book by taking a photo of its cover, using computer vision."
+  github: https://github.com/flaiming/bookfinder
+
+- year: 2024
+  type: project
+  title: "Engeto Hackathon"
+  description: "Team HackHounds — built the 'smartest mortgage calculator ever' at the Engeto hackathon."
+  github: https://github.com/flaiming/EngetoHackathon
+
+- year: 2024
+  type: event
+  title: "Maker Faire Olomouc 2024"
+  description: "Presented Connect-a-Beam at Maker Faire Olomouc — an open-source 3D printed construction set."
+  url: https://makerfaire.cz/projekt/connect-a-beam/
+
+- year: 2025
+  type: project
+  title: "Connect-a-Beam"
+  description: "Open-source 3D printed construction set. Large parts that snap together without screws, printable without supports, with gear support for mechanical builds. Developed for his kids."
+  github: https://github.com/flaiming/Connect-a-Beam
+  url: https://www.printables.com/model/842886-connect-a-beam-construction-set
+
+- year: 2025
+  type: event
+  title: "Maker Faire Yearbook 2025"
+  description: "Connect-a-Beam featured in the official Maker Faire Yearbook 2025, presented at Maker Faire Olomouc."
+  url: https://makerfaire.com/yearbook/projects/connect-a-beam-2025/
+
+- year: 2025
+  type: project
+  title: "n8n Leadspicker nodes"
+  description: "Published n8n automation node to retrieve LinkedIn profiles that reacted to posts — open-source tooling for the Leadspicker ecosystem."
+  github: https://github.com/flaiming/n8n-nodes-leadspicker-post-reactors
+
+- year: 2026
+  type: project
+  title: "automatic-coop-door"
+  description: "Automatic chicken coop door controller built with C++ and Arduino."
+  github: https://github.com/flaiming/automatic-coop-door

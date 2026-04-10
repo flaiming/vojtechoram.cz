@@ -1,0 +1,184 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+// Load featured projects
+const allProjects = await getCollection('projects');
+const featured = allProjects
+  .filter(p => p.data.featured)
+  .sort((a, b) => b.data.year - a.data.year);
+
+// Latest 3 blog posts
+const allPosts = await getCollection('blog');
+const recentPosts = allPosts
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+---
+<BaseLayout title="About" activeNav="about">
+  <div class="container--wide">
+
+    <!-- ── Intro ── -->
+    <div class="about-intro">
+      <div class="about-intro__photo" style="float:right;margin:0 0 1.5rem 2rem;">
+        <img
+          src="https://avatars.githubusercontent.com/u/1169782?v=4"
+          alt="Vojtěch Oram"
+          width="220"
+          height="220"
+        />
+      </div>
+      <p class="about-intro__eyebrow" style="font-family:var(--font-mono);font-size:.8rem;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.75rem;">
+        programmer · maker · dragon enthusiast
+      </p>
+      <h1 class="about-name">Vojtěch <span>Oram</span></h1>
+      <p class="about-title">Senior Full Stack Engineer · Leadspicker.com · South Moravia, CZ</p>
+      <div class="about-bio">
+        <p>
+          I build web applications for a living and for fun — mostly Python &amp; Django,
+          healthy doses of JavaScript and TypeScript, Linux as home. Been at it professionally
+          since 2011, through <strong>Seznam.cz</strong>, <strong>Red Hat</strong>, and now
+          <a href="https://leadspicker.com" target="_blank" rel="noopener">Leadspicker.com</a>
+          where I help build AI-powered B2B sales tooling. In recent months I've shifted to
+          AI coding tools — Codex, Claude, and OpenClaw — letting them handle most of the
+          writing while I focus on architecture, direction, and quality. Still learning how
+          to get the best out of them. Code reviews are something of a speciality — I'm
+          exploring ways to partially automate that too. Clean code still matters,
+          AI-generated or not.
+        </p>
+        <p>
+          Outside code I tinker with electronics (ESP32, Arduino, MicroPython) and 3D printing
+          in OpenSCAD — most recently presenting
+          <a href="https://github.com/flaiming/Connect-a-Beam" target="_blank" rel="noopener">Connect-a-Beam</a>
+          at Maker Faire Olomouc.
+          I'm founder and admin of <a href="https://draci.info" target="_blank" rel="noopener">Draci.info</a>,
+          a Czech dragon community running since 2005, and of
+          <a href="http://bronies.cz" target="_blank" rel="noopener">Bronies.cz</a>,
+          the Czech MLP:FiM fan site. Sci-fi and fantasy fan — not reading as much lately
+          but making up for it with audiobooks. Online I go by <code>flaiming</code>.
+        </p>
+      </div>
+      <ul class="social-links" style="margin-top:1.5rem;">
+        <li><a href="https://github.com/flaiming" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/vojtechoram" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> LinkedIn</a></li>
+        <li><a href="https://www.thingiverse.com/flaiming/designs" target="_blank" rel="noopener"><i class="fa-solid fa-cube"></i> Thingiverse</a></li>
+        <li><a href="https://www.printables.com/social/562799-flaiming/models" target="_blank" rel="noopener"><i class="fa-solid fa-layer-group"></i> Printables</a></li>
+        <li><a href="mailto:vojtech@oram.cz"><i class="fa-solid fa-envelope"></i> vojtech@oram.cz</a></li>
+      </ul>
+    </div>
+
+    <!-- ── Stack ── -->
+    <div class="about-section">
+      <h2>Stack</h2>
+      <ul class="stack-list">
+        {[
+          'Python 3.14', 'Django 6', 'Django Ninja',
+          'Celery', 'PostgreSQL', 'Vue 3', 'TypeScript',
+          'HTML5 / CSS3', 'Docker', 'Git',
+          'Linux (Debian)', 'NeoVim',
+        ].map(s => (
+          <li class="stack-item">{s}</li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- ── Interests ── -->
+    <div class="about-section">
+      <h2>Interests</h2>
+      <div class="interests-blocks">
+
+        <div class="interest">
+          <h3 class="interest__title">🐉 Dragons</h3>
+          <p>It all started in 2004 when I stumbled upon a discussion about dragons on Pevnost.cz, a Czech fantasy magazine forum. What began as curiosity quickly became a deep passion — dragon mythology, lore, history, cryptozoology, fiction. I created DragonFlame as my first website to publish articles emerging from that discussion, which foreshadowed my future as a programmer.</p>
+          <p>I went on to found <a href="https://draci.info" target="_blank" rel="noopener">Draci.info</a>, a Czech dragon community running since 2005. Originally built as a custom PHP/MySQL platform, later migrated to Flarum. The community brings together dragon fans, dracologists, artists, and writers. I also run <a href="http://chcidraky.cz" target="_blank" rel="noopener">ChciDraky.cz</a>, an affiliate aggregator of dragon merchandise — figurines, books, clothing, games, jewellery — and a <a href="https://kalendar.draci.info" target="_blank" rel="noopener">dragon calendar shop</a> featuring artwork from community artists.</p>
+        </div>
+
+        <div class="interest">
+          <h3 class="interest__title">🦄 MLP:FiM</h3>
+          <p>I'm a fan of My Little Pony: Friendship is Magic. The creators managed something genuinely remarkable — making a show originally aimed at young girls compelling for adults too. Whether it's the quality of animation, the sharp writing, pop-culture references, or the voice acting, something about it just works.</p>
+          <p>Since Czech bronies didn't have their own corner of the internet, I took charge and founded <a href="http://bronies.cz" target="_blank" rel="noopener">Bronies.cz</a>, the Czech MLP fan community. I'm still admin there.</p>
+        </div>
+
+        <div class="interest">
+          <h3 class="interest__title">📚 Fantasy & Sci-Fi</h3>
+          <p>Reading — or rather, listening — is a steady companion. I've mostly switched to audiobooks lately. Currently working through <em>Cesta šamana</em> (Way of the Shaman) by Mahaněnko, <em>Salamis</em> by Czech author Jan Kotouč, and the <em>Centrální impérium</em> series.</p>
+          <p>Classic authors I keep returning to: <strong>Douglas Adams</strong> (The Hitchhiker's Guide to the Galaxy), <strong>Terry Pratchett</strong> (everything — the City Watch and Death arcs especially), <strong>J.R.R. Tolkien</strong> (The Hobbit, The Lord of the Rings), <strong>Stanisław Lem</strong> (The Cyberiad), <strong>Naomi Novik</strong> (Temeraire series), <strong>Orson Scott Card</strong> (Ender's Game series), and Czech author <strong>Jiří Kulhánek</strong> (Noční klub, Cesta krve).</p>
+        </div>
+
+        <div class="interest">
+          <h3 class="interest__title">🔌 Electronics</h3>
+          <p>Microcontrollers are where software meets the physical world, and I find that irresistible. I tinker with <strong>ESP32</strong> and <strong>Arduino</strong> — sometimes in C++, often in <strong>MicroPython</strong>. Lately I've been doing it together with my kids, which makes for a great excuse to spend more time on it. Current home projects involve <strong>Home Assistant</strong> integrations and various ESP32 experiments.</p>
+          <p>In 2018 I gave a MicroPython talk at <strong>TechFurMeet</strong>, complete with live hardware demos.</p>
+        </div>
+
+        <div class="interest">
+          <h3 class="interest__title">🖨️ 3D Printing</h3>
+          <p>I design models in <strong>OpenSCAD</strong> and publish them on Thingiverse and Printables. My most developed project is <a href="https://www.printables.com/model/842886-connect-a-beam-construction-set" target="_blank" rel="noopener">Connect-a-Beam</a> — an open-source construction set of large snap-together parts that print without supports and include gear mechanisms for mechanical builds. I originally developed it for my kids as an alternative to Lego (parts too small) and Duplo (no mechanical parts).</p>
+          <p>Presented at <strong>Maker Faire Olomouc</strong> in 2024 and 2025, featured in the Maker Faire Yearbook 2025.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Featured projects ── -->
+    <div class="about-section">
+      <h2>Featured projects</h2>
+      <div class="project-grid">
+        {featured.map(p => (
+          <div class="project-card">
+            {p.data.image && (
+              <img
+                class="project-card__image"
+                src={p.data.image}
+                alt={`${p.data.title} preview`}
+                loading="lazy"
+              />
+            )}
+            <span class="project-card__type">{p.data.type}</span>
+            <span class="project-card__title">{p.data.title}</span>
+            <p class="project-card__desc">{p.body?.split('\n')[0]}</p>
+            <div class="project-card__footer">
+              {p.data.stars && <span class="project-card__stars">★ {p.data.stars}</span>}
+              <div class="project-card__links">
+                {p.data.url && <a class="project-card__link" href={p.data.url} target="_blank" rel="noopener">live</a>}
+                {p.data.github && <a class="project-card__link" href={p.data.github} target="_blank" rel="noopener">github</a>}
+              </div>
+            </div>
+            <div class="tags">
+              {p.data.tags.slice(0, 4).map(t => <span class="tag">{t}</span>)}
+            </div>
+          </div>
+        ))}
+      </div>
+      <p style="margin-top:1.5rem;font-size:.875rem;">
+        <a href="/timeline">See full project timeline →</a>
+      </p>
+    </div>
+
+    <!-- ── Recent posts ── -->
+    <div class="about-section">
+      <h2>Recent posts</h2>
+      <div class="post-list">
+        {recentPosts.map(post => (
+          <div class="post-item">
+            <span class="post-item__date">{formatDate(post.data.date)}</span>
+            <div>
+              <a class="post-item__title" href={`/blog/${post.data.slug ?? post.slug}`}>
+                {post.data.title}
+                {post.data.lang === 'cs' && <span class="post-item__lang">cs</span>}
+              </a>
+              {post.data.description && <p class="post-item__desc">{post.data.description}</p>}
+            </div>
+          </div>
+        ))}
+      </div>
+      <p style="margin-top:1.5rem;font-size:.875rem;">
+        <a href="/blog">All posts →</a>
+      </p>
+    </div>
+
+  </div>
+</BaseLayout>

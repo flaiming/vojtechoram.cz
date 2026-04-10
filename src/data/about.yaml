@@ -1,0 +1,43 @@
+name: Vojtěch Oram
+handle: flaiming
+title: Senior Full Stack Engineer
+tagline: "I love to make useful web applications."
+location: South Moravia, Czechia
+email: vojtech@oram.cz
+social:
+  github: https://github.com/flaiming
+  linkedin: https://www.linkedin.com/in/vojtechoram
+  facebook: https://www.facebook.com/vojtech.oram
+  thingiverse: https://www.thingiverse.com/flaiming/designs
+  printables: https://www.printables.com/social/562799-flaiming/models
+stack:
+  - Python 3.14
+  - Django 6
+  - Django Ninja
+  - Celery
+  - PostgreSQL
+  - Vue 3
+  - TypeScript
+  - HTML5 / CSS3
+  - Docker
+  - Git
+  - Linux (Debian)
+  - NeoVim
+interests:
+  - Dragons
+  - MLP:FiM
+  - Fantasy & Sci-Fi reading
+  - Electronics (ESP8266, ESP32, Arduino)
+  - 3D Printing (OpenSCAD)
+  - Maker Faire
+bio: |
+  I'm a programmer and maker based in South Moravia, Czechia. My main craft is building
+  web applications — mostly Python and Django, with a healthy dose of JavaScript and modern
+  CSS. I've been at it since 2011, through OLYMPIC s.r.o., Seznam.cz, Red Hat, and now
+  Leadspicker.com where I help build AI-powered B2B sales tooling.
+
+  Outside of code I tinker with electronics (ESP8266, ESP32, Arduino) and 3D printing —
+  designing models in OpenSCAD and bringing them to Maker Faire. I'm the founder and admin
+  of Draci.info, a Czech dragon fan community running since 2005, and of Bronies.cz.
+  I read a lot of fantasy and sci-fi, favourites being Douglas Adams, Terry Pratchett, and
+  J.R.R. Tolkien.
