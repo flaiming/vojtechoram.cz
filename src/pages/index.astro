@@ -1,22 +1,61 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import { load as yamlLoad } from 'js-yaml';
+import { readFileSync } from 'fs';
+import path from 'path';
 
-// Load featured projects
-const allProjects = await getCollection('projects');
-const featured = allProjects
-  .filter(p => p.data.featured)
-  .sort((a, b) => b.data.year - a.data.year);
+// Load timeline data
+const timelineRaw = readFileSync(
+  path.join(process.cwd(), 'src/data/timeline.yaml'),
+  'utf-8'
+);
 
-// Latest 3 blog posts
-const allPosts = await getCollection('blog');
-const recentPosts = allPosts
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0, 3);
-
-function formatDate(d: Date) {
-  return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+interface TimelineEntry {
+  year: number;
+  type: 'career' | 'education' | 'project' | 'event';
+  title: string;
+  description: string;
+  company?: string;
+  start?: string;
+  end?: string;
+  url?: string;
+  github?: string;
+  image?: string;
 }
+
+const timeline = (yamlLoad(timelineRaw) as TimelineEntry[]).reverse();
+
+const byYear = timeline.reduce<Record<number, TimelineEntry[]>>((acc, entry) => {
+  if (!acc[entry.year]) acc[entry.year] = [];
+  acc[entry.year].push(entry);
+  return acc;
+}, {});
+
+const years = Object.keys(byYear).map(Number).sort((a, b) => b - a);
+
+interface TimelineItem {
+  kind: 'year' | 'entry';
+  year: number;
+  entry?: TimelineEntry;
+  index: number;
+}
+
+const items: TimelineItem[] = [];
+let entryIndex = 0;
+for (const year of years) {
+  items.push({ kind: 'year', year, index: 0 });
+  for (const entry of byYear[year]) {
+    items.push({ kind: 'entry', year, entry, index: entryIndex });
+    entryIndex++;
+  }
+}
+
+const typeLabel: Record<string, string> = {
+  career: 'career',
+  education: 'education',
+  project: 'project',
+  event: 'event',
+};
 ---
 <BaseLayout title="About" activeNav="about">
   <div class="container--wide">
@@ -123,61 +162,52 @@ function formatDate(d: Date) {
       </div>
     </div>
 
-    <!-- ── Featured projects ── -->
+    <!-- ── Timeline ── -->
     <div class="about-section">
-      <h2>Featured projects</h2>
-      <div class="project-grid">
-        {featured.map(p => (
-          <div class="project-card">
-            {p.data.image && (
-              <img
-                class="project-card__image"
-                src={p.data.image}
-                alt={`${p.data.title} preview`}
-                loading="lazy"
-              />
-            )}
-            <span class="project-card__type">{p.data.type}</span>
-            <span class="project-card__title">{p.data.title}</span>
-            <p class="project-card__desc">{p.body?.split('\n')[0]}</p>
-            <div class="project-card__footer">
-              {p.data.stars && <span class="project-card__stars">★ {p.data.stars}</span>}
-              <div class="project-card__links">
-                {p.data.url && <a class="project-card__link" href={p.data.url} target="_blank" rel="noopener">live</a>}
-                {p.data.github && <a class="project-card__link" href={p.data.github} target="_blank" rel="noopener">github</a>}
+      <h2>Timeline</h2>
+      <p style="font-size:.875rem;color:var(--text-muted);margin-bottom:2rem;">
+        {new Date().getFullYear() - 2004} years of building things — career, projects, and milestones.
+      </p>
+      <div class="timeline">
+        {items.map(item => item.kind === 'year' ? (
+          <div class="timeline-year-bubble">{item.year}</div>
+        ) : (
+          <div class={`timeline-entry timeline-entry--${item.entry!.type} ${item.index % 2 === 0 ? 'timeline-entry--right' : 'timeline-entry--left'}`}>
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <div class="timeline-card__arrow"></div>
+              <div class="timeline-entry__title">{item.entry!.title}</div>
+              <div class="timeline-entry__subtitle">
+                <span class="timeline-entry__meta">
+                  {typeLabel[item.entry!.type]}
+                  {item.entry!.start && item.entry!.end && ` · ${item.entry!.start} – ${item.entry!.end}`}
+                </span>
+                {item.entry!.company && (
+                  <span class="timeline-entry__company">· {item.entry!.company}</span>
+                )}
               </div>
-            </div>
-            <div class="tags">
-              {p.data.tags.slice(0, 4).map(t => <span class="tag">{t}</span>)}
-            </div>
-          </div>
-        ))}
-      </div>
-      <p style="margin-top:1.5rem;font-size:.875rem;">
-        <a href="/timeline">See full project timeline →</a>
-      </p>
-    </div>
-
-    <!-- ── Recent posts ── -->
-    <div class="about-section">
-      <h2>Recent posts</h2>
-      <div class="post-list">
-        {recentPosts.map(post => (
-          <div class="post-item">
-            <span class="post-item__date">{formatDate(post.data.date)}</span>
-            <div>
-              <a class="post-item__title" href={`/blog/${post.data.slug ?? post.slug}`}>
-                {post.data.title}
-                {post.data.lang === 'cs' && <span class="post-item__lang">cs</span>}
-              </a>
-              {post.data.description && <p class="post-item__desc">{post.data.description}</p>}
+              <div class="timeline-entry__desc">{item.entry!.description}</div>
+              {(item.entry!.url || item.entry!.github) && (
+                <div class="timeline-entry__links">
+                  {item.entry!.url && (
+                    <a class="timeline-entry__link" href={item.entry!.url} target="_blank" rel="noopener">
+                      ↗ {new URL(item.entry!.url).hostname}
+                    </a>
+                  )}
+                  {item.entry!.github && (
+                    <a class="timeline-entry__link" href={item.entry!.github} target="_blank" rel="noopener">
+                      ↗ github
+                    </a>
+                  )}
+                </div>
+              )}
+              {item.entry!.image && (
+                <img class="timeline-entry__image" src={item.entry!.image} alt={item.entry!.title} loading="lazy" />
+              )}
             </div>
           </div>
         ))}
       </div>
-      <p style="margin-top:1.5rem;font-size:.875rem;">
-        <a href="/blog">All posts →</a>
-      </p>
     </div>
 
   </div>

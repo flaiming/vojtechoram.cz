@@ -185,3 +185,10 @@
   title: "automatic-coop-door"
   description: "Automatic chicken coop door controller built with C++ and Arduino."
   github: https://github.com/flaiming/automatic-coop-door
+
+- year: 2026
+  type: project
+  title: "Mortgage Refinance Calculator"
+  description: "Mortgage refinancing calculator that simulates investing the monthly payment difference. Built with Streamlit."
+  github: https://github.com/flaiming/mortgage-refinance-calculator
+  url: https://hypo.vojtechoram.cz/

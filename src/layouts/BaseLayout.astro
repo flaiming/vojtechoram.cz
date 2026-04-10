@@ -4,7 +4,7 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
-  activeNav?: 'about' | 'blog' | 'timeline';
+  activeNav?: 'about' | 'blog';
 }
 
 const { title, description = 'Vojtěch Oram — programmer, maker, dragon enthusiast.', activeNav } = Astro.props;
@@ -27,7 +27,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://vojtecho
   <script is:inline>
     (function () {
       const saved = localStorage.getItem('theme');
-      if (saved) document.documentElement.setAttribute('data-theme', saved);
+      if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+        document.documentElement.classList.add('theme-known');
+      }
     })();
   </script>
 </head>
@@ -38,7 +41,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://vojtecho
       <ul class="site-nav__links">
         <li><a href="/" {...activeNav === 'about' ? {'data-active': ''} : {}}>about</a></li>
         <li><a href="/blog" {...activeNav === 'blog' ? {'data-active': ''} : {}}>blog</a></li>
-        <li><a href="/timeline" {...activeNav === 'timeline' ? {'data-active': ''} : {}}>timeline</a></li>
       </ul>
       <span class="site-nav__spacer"></span>
       <button
@@ -48,6 +50,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://vojtecho
         title="Toggle light/dark theme"
       >
         <span id="theme-icon">☀</span>
+        <span class="theme-toggle__hint" id="theme-hint">try dark mode</span>
       </button>
     </div>
   </nav>
@@ -91,6 +94,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://vojtecho
         html.setAttribute('data-theme', next);
         localStorage.setItem('theme', next);
         applyIcon();
+        var hint = document.getElementById('theme-hint');
+        if (hint) hint.classList.add('theme-toggle__hint--hidden');
       });
 
       // Keep icon in sync if OS preference changes
