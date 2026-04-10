@@ -75,7 +75,7 @@ const typeLabel: Record<string, string> = {
       <p class="about-intro__eyebrow">
         programmer · maker · dragon enthusiast
       </p>
-      <h1 class="about-name">Vojtěch <span>Oram</span></h1>
+      <h1 class="about-name"><span>Vojtěch</span> Oram</h1>
       <p class="about-title">Senior Full Stack Engineer · Leadspicker.com · South Moravia, CZ</p>
       <div class="about-bio">
         <p>
@@ -111,55 +111,40 @@ const typeLabel: Record<string, string> = {
       </ul>
     </div>
 
-    <!-- ── Stack ── -->
-    <section class="about-section">
-      <h2>Stack</h2>
-      <ul class="stack-list">
-        {[
-          'Python 3.14', 'Django 6', 'Django Ninja',
-          'Celery', 'PostgreSQL', 'Vue 3', 'TypeScript',
-          'HTML5 / CSS3', 'Docker', 'Git',
-          'Linux (Debian)', 'NeoVim',
-        ].map(s => (
-          <li class="stack-item">{s}</li>
-        ))}
-      </ul>
-    </section>
-
     <!-- ── Interests ── -->
     <section class="about-section">
       <h2>Interests</h2>
       <div class="interests-blocks">
 
-        <div class="interest">
-          <h3 class="interest__title"><span aria-hidden="true">🐉</span> Dragons</h3>
-          <p>It all started in 2004 when I stumbled upon a discussion about dragons on Pevnost.cz, a Czech fantasy magazine forum. What began as curiosity quickly became a deep passion — dragon mythology, lore, history, cryptozoology, fiction. I created DragonFlame as my first website to publish articles emerging from that discussion, which foreshadowed my future as a programmer.</p>
-          <p>I went on to found <a href="https://draci.info" target="_blank" rel="noopener">Draci.info</a>, a Czech dragon community running since 2005. Originally built as a custom PHP/MySQL platform, later migrated to Flarum. The community brings together dragon fans, dracologists, artists, and writers. I also run <a href="http://chcidraky.cz" target="_blank" rel="noopener">ChciDraky.cz</a>, an affiliate aggregator of dragon merchandise — figurines, books, clothing, games, jewellery — and a <a href="https://kalendar.draci.info" target="_blank" rel="noopener">dragon calendar shop</a> featuring artwork from community artists.</p>
-        </div>
-
-        <div class="interest">
-          <h3 class="interest__title"><span aria-hidden="true">🦄</span> MLP:FiM</h3>
-          <p>I'm a fan of My Little Pony: Friendship is Magic. The creators managed something genuinely remarkable — making a show originally aimed at young girls compelling for adults too. Whether it's the quality of animation, the sharp writing, pop-culture references, or the voice acting, something about it just works.</p>
-          <p>Since Czech bronies didn't have their own corner of the internet, I took charge and founded <a href="http://bronies.cz" target="_blank" rel="noopener">Bronies.cz</a>, the Czech MLP fan community. I'm still admin there.</p>
-        </div>
-
-        <div class="interest">
-          <h3 class="interest__title"><span aria-hidden="true">📚</span> Fantasy & Sci-Fi</h3>
-          <p>Reading — or rather, listening — is a steady companion. I've mostly switched to audiobooks lately. Currently working through <em>Cesta šamana</em> (Way of the Shaman) by Mahaněnko, <em>Salamis</em> by Czech author Jan Kotouč, and the <em>Centrální impérium</em> series.</p>
-          <p>Classic authors I keep returning to: <strong>Douglas Adams</strong> (The Hitchhiker's Guide to the Galaxy), <strong>Terry Pratchett</strong> (everything — the City Watch and Death arcs especially), <strong>J.R.R. Tolkien</strong> (The Hobbit, The Lord of the Rings), <strong>Stanisław Lem</strong> (The Cyberiad), <strong>Naomi Novik</strong> (Temeraire series), <strong>Orson Scott Card</strong> (Ender's Game series), and Czech author <strong>Jiří Kulhánek</strong> (Noční klub, Cesta krve).</p>
-        </div>
-
-        <div class="interest">
-          <h3 class="interest__title"><span aria-hidden="true">🔌</span> Electronics</h3>
+        <details class="interest">
+          <summary class="interest__title"><span aria-hidden="true">🔌</span> Electronics</summary>
           <p>Microcontrollers are where software meets the physical world, and I find that irresistible. I tinker with <strong>ESP32</strong> and <strong>Arduino</strong> — sometimes in C++, often in <strong>MicroPython</strong>. Lately I've been doing it together with my kids, which makes for a great excuse to spend more time on it. Current home projects involve <strong>Home Assistant</strong> integrations and various ESP32 experiments.</p>
           <p>In 2018 I gave a MicroPython talk at <strong>TechFurMeet</strong>, complete with live hardware demos.</p>
-        </div>
+        </details>
 
-        <div class="interest">
-          <h3 class="interest__title"><span aria-hidden="true">🖨️</span> 3D Printing</h3>
+        <details class="interest">
+          <summary class="interest__title"><span aria-hidden="true">🖨️</span> 3D Printing</summary>
           <p>I design models in <strong>OpenSCAD</strong> and publish them on Thingiverse and Printables. My most developed project is <a href="https://www.printables.com/model/842886-connect-a-beam-construction-set" target="_blank" rel="noopener">Connect-a-Beam</a> — an open-source construction set of large snap-together parts that print without supports and include gear mechanisms for mechanical builds. I originally developed it for my kids as an alternative to Lego (parts too small) and Duplo (no mechanical parts).</p>
           <p>Presented at <strong>Maker Faire Olomouc</strong> in 2024 and 2025, featured in the Maker Faire Yearbook 2025.</p>
-        </div>
+        </details>
+
+        <details class="interest">
+          <summary class="interest__title"><span aria-hidden="true">📚</span> Fantasy & Sci-Fi</summary>
+          <p>Reading — or rather, listening — is a steady companion. I've mostly switched to audiobooks lately. Currently working through <em>Cesta šamana</em> (Way of the Shaman) by Mahaněnko, <em>Salamis</em> by Czech author Jan Kotouč, and the <em>Centrální impérium</em> series.</p>
+          <p>Classic authors I keep returning to: <strong>Douglas Adams</strong> (The Hitchhiker's Guide to the Galaxy), <strong>Terry Pratchett</strong> (everything — the City Watch and Death arcs especially), <strong>J.R.R. Tolkien</strong> (The Hobbit, The Lord of the Rings), <strong>Stanisław Lem</strong> (The Cyberiad), <strong>Naomi Novik</strong> (Temeraire series), <strong>Orson Scott Card</strong> (Ender's Game series), and Czech author <strong>Jiří Kulhánek</strong> (Noční klub, Cesta krve).</p>
+        </details>
+
+        <details class="interest">
+          <summary class="interest__title"><span aria-hidden="true">🐉</span> Dragons</summary>
+          <p>It all started in 2004 when I stumbled upon a discussion about dragons on Pevnost.cz, a Czech fantasy magazine forum. What began as curiosity quickly became a deep passion — dragon mythology, lore, history, cryptozoology, fiction. I created DragonFlame as my first website to publish articles emerging from that discussion, which foreshadowed my future as a programmer.</p>
+          <p>I went on to found <a href="https://draci.info" target="_blank" rel="noopener">Draci.info</a>, a Czech dragon community running since 2005. Originally built as a custom PHP/MySQL platform, later migrated to Flarum. The community brings together dragon fans, dracologists, artists, and writers. I also run <a href="http://chcidraky.cz" target="_blank" rel="noopener">ChciDraky.cz</a>, an affiliate aggregator of dragon merchandise — figurines, books, clothing, games, jewellery — and a <a href="https://kalendar.draci.info" target="_blank" rel="noopener">dragon calendar shop</a> featuring artwork from community artists.</p>
+        </details>
+
+        <details class="interest">
+          <summary class="interest__title"><span aria-hidden="true">🦄</span> MLP:FiM</summary>
+          <p>I'm a fan of My Little Pony: Friendship is Magic. The creators managed something genuinely remarkable — making a show originally aimed at young girls compelling for adults too. Whether it's the quality of animation, the sharp writing, pop-culture references, or the voice acting, something about it just works.</p>
+          <p>Since Czech bronies didn't have their own corner of the internet, I took charge and founded <a href="http://bronies.cz" target="_blank" rel="noopener">Bronies.cz</a>, the Czech MLP fan community. I'm still admin there.</p>
+        </details>
 
       </div>
     </section>

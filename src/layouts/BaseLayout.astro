@@ -21,7 +21,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://vojtecho
   <title>{title} — Vojtěch Oram</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
   <!-- Restore saved theme before first paint to avoid flash -->
   <script is:inline>
@@ -37,7 +37,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://vojtecho
 <body>
   <nav class="site-nav">
     <div class="site-nav__inner">
-      <a href="/" class="site-nav__brand">vojtech<span>oram</span>.cz</a>
+      <a href="/" class="site-nav__brand">vojtechoram<span>.cz</span></a>
       <ul class="site-nav__links">
         <li><a href="/" {...activeNav === 'about' ? {'data-active': ''} : {}}>about</a></li>
         <li><a href="/blog" {...activeNav === 'blog' ? {'data-active': ''} : {}}>blog</a></li>
