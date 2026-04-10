@@ -429,7 +429,7 @@ hr {
   z-index: 2;
   width: 4rem;
   height: 4rem;
-  margin: 0 auto 1.5rem;
+  margin: 1.5rem auto 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -441,6 +441,9 @@ hr {
   font-size: 1rem;
   font-weight: 700;
   color: var(--text);
+}
+.timeline-year-bubble:first-child {
+  margin-top: 0;
 }
 
 /* ── entry wrapper (positions card + dot) ─── */
@@ -510,14 +513,14 @@ hr {
 }
 .timeline-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0,0,0,.08);
+  box-shadow: 0 4px 20px var(--tl-card-glow, rgba(0,0,0,.08));
 }
 
-/* colored top accent bar per type */
-.timeline-entry--career  .timeline-card { border-top: 3px solid var(--tl-color-career); }
-.timeline-entry--education .timeline-card { border-top: 3px solid var(--tl-color-education); }
-.timeline-entry--event   .timeline-card { border-top: 3px solid var(--tl-color-event); }
-.timeline-entry--project .timeline-card { border-top: 3px solid var(--tl-color-project); }
+/* colored top accent bar + hover glow per type */
+.timeline-entry--career  .timeline-card { border-top: 3px solid var(--tl-color-career); --tl-card-glow: rgba(232,168,56,.18); }
+.timeline-entry--education .timeline-card { border-top: 3px solid var(--tl-color-education); --tl-card-glow: rgba(59,130,246,.18); }
+.timeline-entry--event   .timeline-card { border-top: 3px solid var(--tl-color-event); --tl-card-glow: rgba(245,158,11,.18); }
+.timeline-entry--project .timeline-card { border-top: 3px solid var(--tl-color-project); --tl-card-glow: rgba(139,92,246,.18); }
 
 /* card arrow — vertically centred on the timeline dot */
 .timeline-card__arrow {
@@ -616,6 +619,7 @@ hr {
   font-size: .875rem;
   color: var(--text-muted);
   line-height: 1.6;
+  margin-bottom: .2rem;
 }
 .timeline-entry__links {
   display: flex;
@@ -648,8 +652,16 @@ hr {
 @media (max-width: 768px) {
   .timeline::before { left: 1rem; }
   .timeline-year-bubble {
-    margin: 0 0 1rem 0;
-    left: calc(1rem - 2rem);
+    margin: 1rem 0 1rem 0;
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: .85rem;
+    /* centre on the mobile line at left: 1rem */
+    position: relative;
+    left: calc(1rem - 1.75rem);
+  }
+  .timeline-year-bubble:first-child {
+    margin-top: 0;
   }
   .timeline-dot { left: 1rem; }
   .timeline-entry--right .timeline-card,
