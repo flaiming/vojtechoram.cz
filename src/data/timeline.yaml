@@ -84,8 +84,9 @@
 
 - year: 2014
   type: education
-  title: "Vocational School — Electrician certificate"
-  description: "Completed apprenticeship in Electrician at Higher Professional and Secondary Technical School."
+  title: "SPŠ Žďár nad Sázavou — Electrician certificate"
+  description: "Completed apprenticeship in Electrician at Střední průmyslová škola Žďár nad Sázavou (three-year vocational program concluded with a vocational certificate)."
+  url: https://www.spszr.cz/vzdelavaci-obory/maturitni_obory/elektrikar
 
 - year: 2014
   type: project
