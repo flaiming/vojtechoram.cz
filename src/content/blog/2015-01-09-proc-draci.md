@@ -17,6 +17,6 @@ Co je pro mě drak? Velký, šupinatý a rohatý tvor s blanitými křídly. Vyz
 
 Pokud jste na to ještě nepřišli sami, můj ideál draka se prakticky přesně shoduje s drakem jménem Draco z filmu Dračí srdce. Kdo tento film ještě neviděl, nedočítejte tento odstavec a běžte se na to podívat sami :) (následují prozrazení zápletky). Draco zde představuje samotářsky žijícího draka, jež neunáší princezny, ale za kterým někteří lidé chodí právě kvůli jeho moudrosti. Díky své dobré povaze daruje půlku svého srdce lidskému chlapci, jež utrpěl smrtelné zranění, čímž mu zachrání život. Z chlapce nakonec vyroste tyran, nicméně pořád ho s drakem pojí půlka jeho srdce. Draco již však svůj obětavý čin nemůže vzít zpátky. Nakonec obětuje svůj život, aby napravil svou chybu.
 
-![Dračí srdce](https://vojtechoram.cz/media/blog/dragonheart.jpg)
+![Dračí srdce](/media/blog/dragonheart.jpg)
 
 Můj pohled se ale nemusí vůbec shodovat s pohledem jiných. Draci jsou synonymem fantazie a stejně jako neznámé oblasti na mapách, označované "Zde jsou draci", může být naše fantazie děsivá a zároveň krásná. Záleží jen na nás, co si budeme chtít představit.

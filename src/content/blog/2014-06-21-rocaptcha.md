@@ -9,7 +9,7 @@ description: "CAPTCHA test založený na otáčení obrázků do správné poloh
 
 Pod touto trochu krkolomnou zkratkou se skrývá [CAPTCHA test](http://cs.wikipedia.org/wiki/CAPTCHA), založený na otáčení obrázků do správné polohy (rotační CAPTCHA). Použití najde všude, kde je třeba odlišit legitimního lidského uživatele od počítače (registrace, komentáře, přihlašování).
 
-![RoCAPTCHA](https://vojtechoram.cz/media/blog/rocaptcha.png)
+![RoCAPTCHA](/media/blog/rocaptcha.png)
 
 Základ RoCAPTCHA test vznikl v rámci mé [diplomové práce](http://hdl.handle.net/10195/51820). Nápad použít pro CAPTCHA test otáčení obrázků do správné polohy bohužel není můj - vznikl v roce 2009 v rámci výzkumu Googlu [What's Up CAPTCHA](http://research.google.com/pubs/pub35157.html). V tomto výzkumu se ovšem počítalo s použitím jakýchkoli obrázků (s filtrací snadno počítačem otočitelných, například obsahující lidi, horizont, oblohu apod.). Není zde ale téměř žádná přidaná hodnota, takže jsem ji ještě zkřížil s CAPTCHA testem [Asirra](http://research.microsoft.com/en-us/um/redmond/projects/asirra/) od Microsoftu, kde jde o rozpoznání koček od psů. Přidaná hodnota spočívá v možnosti adoptovat skrze Asirru zvířata z útulků, neboť právě z fotografií zvířat z útulků je tvořena báze dat. To mi navíc řeší další problém, neboť zvířata jsou zpravidla focena z pohledu člověka, tedy v úhlu cca 45°. Tím pádem zde nenajdete horizont, vodní hladinu, oblohu a většinou ani obličeje lidí. A jako bonus má stejnou přidanou hodnotu, jako Asirra (o té podrobněji napíšu až v dalších článcích).
 
